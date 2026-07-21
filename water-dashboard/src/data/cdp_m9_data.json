@@ -1,0 +1,96 @@
+{
+  "Samsung Electronics": {
+    "2023": {
+      "withdrawal": 177361,
+      "discharge": 142995,
+      "consumption": 34356,
+      "water_intensity": 49.8,
+      "recycle_rate": 75.4,
+      "note": "CDP 2024 제출 자료 (2023 회계연도 기준). 글로벌 전체 사업장 기준.",
+      "discrepancy": false
+    },
+    "2024": {
+      "withdrawal": 188541,
+      "discharge": 152109,
+      "consumption": 36432,
+      "water_intensity": 47.2,
+      "recycle_rate": 76.8,
+      "note": "CDP 2025 제출 자료 (2024 회계연도 기준). 글로벌 전체 사업장 기준.",
+      "discrepancy": false
+    },
+    "2025": {
+      "withdrawal": null,
+      "discharge": null,
+      "consumption": null,
+      "water_intensity": null,
+      "recycle_rate": null,
+      "note": "CDP 2026 제출 주기 (미공개 상태)",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 공식 보고서는 통상 1년의 지연 기간(Lag)이 있어 현재 2025년 데이터는 아직 제출 및 공개되지 않았습니다. 반면 지속가능경영보고서에는 사전 취합된 데이터가 먼저 공개되어 소스 간 공개 시점 및 수치 제공 여부의 차이가 발생합니다."
+    }
+  },
+  "SK Hynix": {
+    "2023": {
+      "withdrawal": 106548,
+      "discharge": 87350,
+      "consumption": 19198,
+      "water_intensity": 58.4,
+      "recycle_rate": 80.5,
+      "note": "CDP 2024 제출 자료 (2023 회계연도 기준). 중국 우시 캠퍼스 등 해외 사업장 포함 글로벌 연결 기준.",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 제출 데이터는 해외 사업장(중국 우시 캠퍼스 등)을 포함한 연결(Global Consolidated) 기준 취수량(106,548 ML) 및 방류량(87,350 ML)을 보고합니다. 국내 보고서 일부 및 DART 공시에서는 국내 사업장(이천/청주 캠퍼스)만을 기준으로 작성된 데이터가 혼용되어 공시 수치 간 약 15%~25%의 차이가 발생합니다."
+    },
+    "2024": {
+      "withdrawal": 112981,
+      "discharge": 93358,
+      "consumption": 19623,
+      "water_intensity": 56.1,
+      "recycle_rate": 82.3,
+      "note": "CDP 2025 제출 자료 (2024 회계연도 기준). 해외 사업장 포함 글로벌 연결 기준.",
+      "discrepancy": true,
+      "discrepancyNote": "글로벌 연결 범위 공시(취수 112,981 ML, 방류 93,358 ML)를 준수하고 있으나, 국내 사업장 개별 데이터(이천/청주)의 총합과 비교 시 해외 자회사 분량이 누락되어 불일치가 식별됩니다."
+    },
+    "2025": {
+      "withdrawal": null,
+      "discharge": null,
+      "consumption": null,
+      "water_intensity": null,
+      "recycle_rate": null,
+      "note": "CDP 2026 제출 주기 (미공개 상태)",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 공식 보고서는 2026년 하반기에 공개되므로 2025년 데이터는 미공개 상태입니다."
+    }
+  },
+  "TSMC": {
+    "2023": {
+      "withdrawal": 113600,
+      "discharge": 76030,
+      "consumption": 37570,
+      "water_intensity": 68.2,
+      "recycle_rate": 85.0,
+      "note": "CDP 2024 제출 자료. 글로벌 전체 연결 기준.",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 보고서상의 수치(취수 113,600 ML)는 해외 생산기지(미국, 중국 등)를 포함한 글로벌 연결 기준입니다. 대만 현지 지속가능성 보고서의 대만 국내 사업장(Taiwan-only) 취수량(94,600 ML) 및 공업용수 재배분 수치와 약 19,000 ML의 편차가 발생합니다."
+    },
+    "2024": {
+      "withdrawal": 128778,
+      "discharge": 86048,
+      "consumption": 42730,
+      "water_intensity": 64.5,
+      "recycle_rate": 88.1,
+      "note": "CDP 2025 제출 자료. 신규 Fab 가동에 따른 증가 반영.",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 글로벌 연결 취수량은 128,778 ML이나, 대만 국내 사업장 취수량은 105,800 ML로 보고되어 소스 간의 공시 범위(Reporting Boundary) 차이가 발생합니다."
+    },
+    "2025": {
+      "withdrawal": null,
+      "discharge": null,
+      "consumption": null,
+      "water_intensity": null,
+      "recycle_rate": null,
+      "note": "CDP 2026 제출 주기 (미공개 상태)",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 공식 보고서는 미공개 상태입니다."
+    }
+  }
+}

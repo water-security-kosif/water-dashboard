@@ -1,0 +1,94 @@
+{
+  "Samsung Electronics": {
+    "2023": {
+      "withdrawal": 177361,
+      "discharge": 142995,
+      "consumption": 34356,
+      "water_intensity": 49.8,
+      "recycle_rate": 75.4,
+      "note": "2024 삼성전자 지속가능경영보고서 기준. 글로벌 사업장 전체 취합 수치.",
+      "discrepancy": false
+    },
+    "2024": {
+      "withdrawal": 188541,
+      "discharge": 152109,
+      "consumption": 36432,
+      "water_intensity": 47.2,
+      "recycle_rate": 76.8,
+      "note": "2025 삼성전자 지속가능경영보고서 기준. 글로벌 사업장 전체 취합 수치.",
+      "discrepancy": false
+    },
+    "2025": {
+      "withdrawal": 196500,
+      "discharge": 159200,
+      "consumption": 37300,
+      "water_intensity": 45.5,
+      "recycle_rate": 78.2,
+      "note": "2026 삼성전자 지속가능경영보고서 사전공시 기준. 글로벌 전체 추정치 반영.",
+      "discrepancy": true,
+      "discrepancyNote": "CDP에는 아직 보고되지 않은 최신 회계연도(2025년) 데이터가 지속가능경영보고서(사전 공시)에 반영되어 있습니다. 이로 인해 2025년 기준 CDP 수치는 누락되었으나 지속가능경영보고서에서는 최신 취수/방류 실적을 확인할 수 있습니다."
+    }
+  },
+  "SK Hynix": {
+    "2023": {
+      "withdrawal": 106548,
+      "discharge": 87350,
+      "consumption": 19198,
+      "water_intensity": 58.4,
+      "recycle_rate": 80.5,
+      "note": "2024 SK하이닉스 지속가능경영보고서 기준. 글로벌 전체 사업장 기준.",
+      "discrepancy": false
+    },
+    "2024": {
+      "withdrawal": 112981,
+      "discharge": 93358,
+      "consumption": 19623,
+      "water_intensity": 56.1,
+      "recycle_rate": 82.3,
+      "note": "2025 SK하이닉스 지속가능경영보고서 기준. 글로벌 전체 사업장 기준.",
+      "discrepancy": false
+    },
+    "2025": {
+      "withdrawal": 119200,
+      "discharge": 98600,
+      "consumption": 20600,
+      "water_intensity": 53.8,
+      "recycle_rate": 84.0,
+      "note": "2026 SK하이닉스 지속가능경영보고서 기준 (추정값 연동).",
+      "discrepancy": true,
+      "discrepancyNote": "CDP 공시의 시간적 격차로 인해 2025년도 데이터는 지속가능경영보고서에만 조기 수록되어 있습니다."
+    }
+  },
+  "TSMC": {
+    "2023": {
+      "withdrawal": 94600,
+      "discharge": 62500,
+      "consumption": 32100,
+      "water_intensity": 62.1,
+      "recycle_rate": 86.8,
+      "note": "2023 TSMC Sustainability Report 기준. 대만 국내 사업장(Taiwan-only) 범위만 포함.",
+      "discrepancy": true,
+      "discrepancyNote": "TSMC가 매년 발간하는 현지 지속가능성 보고서의 헤드라인 수치(취수 94,600 ML, 방류 62,500 ML)는 대만 내 생산 팹(Fab)만을 집계한 결과입니다. 이는 해외 자회사(미국, 중국 등)의 취·방류량이 합산되어 제출되는 CDP의 글로벌 연결 기준 수치(취수 113,600 ML, 방류 76,030 ML)와 약 17%~20%의 격차를 보입니다."
+    },
+    "2024": {
+      "withdrawal": 105800,
+      "discharge": 69400,
+      "consumption": 36400,
+      "water_intensity": 59.4,
+      "recycle_rate": 88.5,
+      "note": "2024 TSMC Sustainability Report 기준. 대만 국내 사업장 범위만 포함.",
+      "discrepancy": true,
+      "discrepancyNote": "글로벌 연결 기준인 CDP(취수 128,778 ML, 방류 86,048 ML)와 비교해 대만 현지 보고서(취수 105,800 ML, 방류 69,400 ML)는 범위 차이로 인해 22,978 ML의 차이를 보입니다."
+    },
+    "2025": {
+      "withdrawal": 114200,
+      "discharge": 75300,
+      "consumption": 38900,
+      "water_intensity": 56.7,
+      "recycle_rate": 90.2,
+      "note": "2025 TSMC Sustainability Report 사전 공시 기준. 대만 국내 사업장 범위만 포함.",
+      "discrepancy": true,
+      "discrepancyNote": "지속가능경영보고서에만 2025 회계연도 대만 사업장 데이터가 선반영되어 공개되어 있습니다."
+    }
+  }
+}

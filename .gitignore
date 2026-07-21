@@ -1,0 +1,20 @@
+# Ignore local node_modules
+water-dashboard/node_modules/
+water-dashboard/dist/
+
+# Ignore system/agent files
+.gemini/
+.agents/
+scratch/
+task.md
+implementation_plan.md
+walkthrough.md
+*.log
+
+# Ignore large documents and executables
+_메일발송/
+*.pdf
+*.xlsx
+~$*.xlsx
+*.exe
+desktop.ini
