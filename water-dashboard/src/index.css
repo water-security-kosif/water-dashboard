@@ -1804,3 +1804,220 @@ tr.selected-row td {
   color: var(--text-muted);
   font-size: 12px;
 }
+
+/* ============================================================
+   상단 KPI 밴드 — 핵심 숫자를 가장 먼저 읽히게
+   ============================================================ */
+.kpi-band { margin: 0 0 20px; }
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 18px 14px;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--color-primary);
+}
+.kpi-card-accent { border-top-color: #eb6834; }
+.kpi-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: .01em;
+  margin-bottom: 6px;
+}
+.kpi-value {
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--text-title);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+.kpi-unit { font-size: .46em; font-weight: 700; margin-left: 3px; color: var(--text-main); }
+.kpi-sub { margin-top: 7px; font-size: 12.5px; color: var(--text-main); }
+.kpi-meta { margin-top: 4px; font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+.kpi-footnote {
+  margin: 10px 2px 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   CDP Module 9 사업장 지도
+   ============================================================ */
+.m9-map-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+}
+.m9-map-head h3 { margin: 10px 0 4px; font-size: 19px; color: var(--text-title); }
+.m9-map-head p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+.m9-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 12px;
+}
+.m9-filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.m9-chip {
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.m9-chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.m9-chip.is-on {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.m9-chip-count {
+  font-size: 11px;
+  background: rgba(0,0,0,.12);
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-variant-numeric: tabular-nums;
+}
+.m9-chip.is-on .m9-chip-count { background: rgba(255,255,255,.26); }
+.m9-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+}
+.m9-toggle input { cursor: pointer; accent-color: var(--color-primary); }
+
+.m9-map-wrap { position: relative; }
+.m9-map {
+  width: 100%;
+  height: clamp(420px, 56vh, 640px);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+.m9-map-fallback {
+  padding: 28px;
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.m9-map-fallback p { margin: 8px 0 0; color: var(--text-muted); font-size: 12.5px; }
+.m9-map-fallback code {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--bg-card);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.m9-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-main);
+}
+.m9-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.m9-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+.m9-legend-note { color: var(--text-muted); }
+
+.m9-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.m9-stat {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  padding: 11px 13px;
+}
+.m9-stat-label { display: block; font-size: 11.5px; color: var(--text-muted); margin-bottom: 3px; }
+.m9-stat strong {
+  font-size: 17px;
+  color: var(--text-title);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.m9-stat-warn strong { color: var(--color-danger); }
+
+.m9-source {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* Google InfoWindow 내부는 iframe 아님 — 다크모드에서 흰 배경 유지 */
+.gm-style-iw-d { overscroll-behavior: contain; }
+
+@media (max-width: 640px) {
+  .m9-map { height: 380px; }
+  .m9-filters { gap: 10px; }
+  .kpi-card { padding: 14px 14px 12px; }
+}
+
+/* CDP 문항 선택 — 탭 나열 대신 드롭다운으로 축소 */
+.cdp-question-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 4px;
+  flex-wrap: wrap;
+}
+.cdp-question-selector label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.cdp-question-selector select {
+  flex: 1 1 260px;
+  max-width: 520px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: var(--sans);
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cdp-question-selector select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+.cdp-q-count { font-size: 11.5px; color: var(--text-muted); }

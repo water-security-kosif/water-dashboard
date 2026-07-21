@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react';
+import KpiHeader from './KpiHeader';
+import FacilityMap from './FacilityMap';
 import { 
   Droplet, 
   ArrowDownRight, 
@@ -466,159 +468,20 @@ export default function WaterDashboard() {
         </p>
       </header>
 
+      {/* 상단 KPI — CDP Q9.2.2 원본 검증 수치 */}
+      <KpiHeader />
+
+      {/* CDP Module 9 사업장 지도 (최상단) */}
+      <FacilityMap />
+
       {/* Main Accordion Container */}
       <div className="accordion-container">
         
-        {/* 1. CDP 데이터의 우수성과 범용성 */}
-        <div className={`accordion-item ${activeSection === 'cdp' ? 'is-active' : ''}`}>
-          <div className="accordion-header" onClick={() => toggleSection('cdp')}>
-            <div className="header-title-box">
-              <span className="section-badge">Section 1</span>
-              <div>
-                <h3>CDP 공시 데이터의 우수성 및 실제 문항 응답 비교</h3>
-                <p>글로벌 표준 질의서(W9 문항)에 기반한 3사 실제 공개 응답 팩트 비교</p>
-              </div>
-            </div>
-            {activeSection === 'cdp' ? <ChevronUp className="chevron" /> : <ChevronDown className="chevron" />}
-          </div>
-          
-          {activeSection === 'cdp' && (
-            <div className="accordion-content fade-in">
-              <div className="pane-grid">
-                <div className="pane-text">
-                  <h3>글로벌 스탠다드, CDP 공시 데이터의 비교 우위</h3>
-                  <p>
-                    반도체 용수 리스크를 객관적으로 평가하기 위해 본 대시보드가 **CDP(탄소정보공개프로젝트) Water Security** 공시 데이터를 메인 뼈대로 설정한 이유는 기존 규제 공시(DART 등) 및 개별 지속가능보고서 대비 압도적인 <strong>'우수성'</strong>과 <strong>'범용성'</strong>을 가지기 때문입니다.
-                  </p>
-                  
-                  <div className="cdp-question-map mt-4">
-                    <h4>💡 세분화된 수자원 평가 문항 구조 (CDP M9/Q9) <span className="source-label-inline">[출처: CDP Water Security 2025 Guidance]</span></h4>
-                    <div className="question-grid-list">
-                      <div className="q-item">
-                        <span className="q-num font-mono">Q 9.2.9</span>
-                        <div>
-                          <strong>폐수 처리 수준 공시:</strong> 1차 처리만 거쳐 방류하는지, 2차/3차 고도 정밀 처리를 완료하여 방류하는지를 엄격하게 규정하여 수자원 정화 수준을 대조합니다.
-                        </div>
-                      </div>
-                      <div className="q-item">
-                        <span className="q-num font-mono">Q 9.2.10</span>
-                        <div>
-                          <strong>수질 오염물질 배출량:</strong> 화학적 산소요구량(COD), 유기 화합물, 질소/인 등 실제 방류수에 섞여 배출되는 오염성 미립자의 무게와 관리 역량을 입증합니다.
-                        </div>
-                      </div>
-                      <div className="q-item">
-                        <span className="q-num font-mono">Q 9.5</span>
-                        <div>
-                          <strong>전체 물 사용 효율성 (Water Intensity):</strong> 단순 사용 총량을 넘어 매출액당 물 사용량, 혹은 생산량 단위당 물 사용 효율을 강제함으로써 진정한 수자원 회복력을 벤치마킹합니다.
-                        </div>
-                      </div>
-                      <div className="q-item">
-                        <span className="q-num font-mono">Q 9.13</span>
-                        <div>
-                          <strong>유해물질 포함 제품:</strong> 자사 반도체 패키징이나 기판 제작 중 REACH 등 국제 유해 규제 물질 사용 비율을 추적하여 친환경 안전성을 모니터링합니다.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="pane-graphics">
-                  <div className="cdp-vs-table-box">
-                    <div className="graphic-title">공시 채널별 비교 테이블 <span className="source-label-inline">[출처: KoSIF 물공시 이슈브리프]</span></div>
-                    <table className="mini-table">
-                      <thead>
-                        <tr>
-                          <th>평가 기준</th>
-                          <th>국내 DART / 법적공시</th>
-                          <th>CDP 글로벌 스탠다드</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><strong>지리적 경계</strong></td>
-                          <td className="text-red"><Lock className="mini-icon" /> 국내 법인/공장 한정</td>
-                          <td className="text-green font-semibold"><Globe className="mini-icon" /> 글로벌 연결 (Consolidated)</td>
-                        </tr>
-                        <tr>
-                          <td><strong>공시 세분성</strong></td>
-                          <td className="text-red">단순 취수/방류 총량만 기재</td>
-                          <td className="text-green font-semibold">폐수 정화 등급, 오염 물질량 개별 공시</td>
-                        </tr>
-                        <tr>
-                          <td><strong>검증 신뢰성</strong></td>
-                          <td className="text-muted">자가 검증 위주</td>
-                          <td className="text-green font-semibold"><FileCheck className="mini-icon" /> Q9.3.2 제3자 검증 의무화</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div className="graphic-note mt-2">
-                      * CDP 데이터를 활용함으로써, 베일에 감춰진 한국 기업과 대만 TSMC를 **동일선상(Apples-to-Apples)**에서 비교 가능한 공통 환경 프로토콜이 형성됩니다.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* NEW INTERACTIVE SECTION: CDP Response Explorer */}
-              <div className="cdp-explorer-wrapper mt-4">
-                <div className="explorer-header">
-                  <BookOpen className="explorer-icon text-blue" />
-                  <h4>CDP 문항별 실제 제출 응답 비교 매트릭스</h4>
-                  <p className="explorer-subtitle">기업별 2025년 최신 CDP Water Security 공식 답변 서한 원문 대조</p>
-                </div>
-
-                <div className="cdp-question-selector-tabs">
-                  {Object.keys(cdpMatrixData).map((qId) => (
-                    <button
-                      key={qId}
-                      className={activeCdpQuestion === qId ? 'active-q-tab' : ''}
-                      onClick={() => setActiveCdpQuestion(qId)}
-                    >
-                      {qId} 문항 보기
-                    </button>
-                  ))}
-                </div>
-
-                {selectedCdpQuestionData && (
-                  <div className="cdp-response-box fade-in">
-                    <div className="cdp-q-info-panel">
-                      <h5>{selectedCdpQuestionData.title}</h5>
-                      <p>{selectedCdpQuestionData.desc}</p>
-                    </div>
-
-                    <div className="cdp-matrix-table-wrapper mt-2">
-                      <table className="cdp-matrix-table">
-                        <thead>
-                          <tr>
-                            <th>비교 평가 항목 (Aspect)</th>
-                            <th className="th-samsung">삼성전자</th>
-                            <th className="th-hynix">SK하이닉스</th>
-                            <th className="th-tsmc">TSMC</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {selectedCdpQuestionData.rows.map((row: any, idx: number) => (
-                            <tr key={idx}>
-                              <td className="font-semibold aspect-cell">{row.aspect}</td>
-                              <td className="samsung-cell">{row.samsung}</td>
-                              <td className="hynix-cell">{row.hynix}</td>
-                              <td className="tsmc-cell">{row.tsmc}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-
         {/* 2. 용수 필요량 시뮬레이터 */}
         <div className={`accordion-item ${activeSection === 'simulator' ? 'is-active' : ''}`}>
           <div className="accordion-header" onClick={() => toggleSection('simulator')}>
             <div className="header-title-box">
-              <span className="section-badge">Section 2</span>
+              <span className="section-badge">Section 1</span>
               <div>
                 <h3>반도체 용수 필요량(Water Intensity) 추정 시뮬레이터</h3>
                 <p>TSMC 원단위(Proxy) 및 국내 반도체 기업 원단위 대조를 통한 실시간 수급량 추정</p>
@@ -739,7 +602,7 @@ export default function WaterDashboard() {
         <div className={`accordion-item ${activeSection === 'quality' ? 'is-active' : ''}`}>
           <div className="accordion-header" onClick={() => toggleSection('quality')}>
             <div className="header-title-box">
-              <span className="section-badge">Section 3</span>
+              <span className="section-badge">Section 2</span>
               <div>
                 <h3>수량만큼이나 통제하기 어려운 수질(초순수)의 벽</h3>
                 <p>일반 데이터센터 냉각 용수 vs 반도체 생산용 초순수(UPW) 물리화학적 스펙 대조</p>
@@ -987,7 +850,7 @@ export default function WaterDashboard() {
         <div className={`accordion-item ${activeSection === 'alternative' ? 'is-active' : ''}`}>
           <div className="accordion-header" onClick={() => toggleSection('alternative')}>
             <div className="header-title-box">
-              <span className="section-badge">Section 4</span>
+              <span className="section-badge">Section 3</span>
               <div>
                 <h3>농업용수 전환의 현실적 한계와 공정 병목(Bottleneck)</h3>
                 <p>저수지 물에서 반도체 초순수까지 정수 처리 과정과 물리적 지연 병목 현상 시각화</p>
@@ -1071,6 +934,155 @@ export default function WaterDashboard() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 1. CDP 데이터의 우수성과 범용성 */}
+        <div className={`accordion-item ${activeSection === 'cdp' ? 'is-active' : ''}`}>
+          <div className="accordion-header" onClick={() => toggleSection('cdp')}>
+            <div className="header-title-box">
+              <span className="section-badge">Section 4</span>
+              <div>
+                <h3>CDP 공시 데이터의 우수성 및 실제 문항 응답 비교</h3>
+                <p>글로벌 표준 질의서(W9 문항)에 기반한 3사 실제 공개 응답 팩트 비교</p>
+              </div>
+            </div>
+            {activeSection === 'cdp' ? <ChevronUp className="chevron" /> : <ChevronDown className="chevron" />}
+          </div>
+          
+          {activeSection === 'cdp' && (
+            <div className="accordion-content fade-in">
+              <div className="pane-grid">
+                <div className="pane-text">
+                  <h3>글로벌 스탠다드, CDP 공시 데이터의 비교 우위</h3>
+                  <p>
+                    본 대시보드가 CDP(탄소정보공개프로젝트) Water Security를 뼈대로 삼은 이유는, DART 공시나 개별 지속가능경영보고서와 달리 <strong>기업 간 비교가 성립하는 공통 양식</strong>이기 때문입니다.
+                  </p>
+                  
+                  <div className="cdp-question-map mt-4">
+                    <h4>💡 세분화된 수자원 평가 문항 구조 (CDP M9/Q9) <span className="source-label-inline">[출처: CDP Water Security 2025 Guidance]</span></h4>
+                    <div className="question-grid-list">
+                      <div className="q-item">
+                        <span className="q-num font-mono">Q 9.2.9</span>
+                        <div>
+                          <strong>폐수 처리 수준 공시:</strong> 1차 처리만 거쳐 방류하는지, 2차/3차 고도 정밀 처리를 완료하여 방류하는지를 엄격하게 규정하여 수자원 정화 수준을 대조합니다.
+                        </div>
+                      </div>
+                      <div className="q-item">
+                        <span className="q-num font-mono">Q 9.2.10</span>
+                        <div>
+                          <strong>수질 오염물질 배출량:</strong> 화학적 산소요구량(COD), 유기 화합물, 질소/인 등 실제 방류수에 섞여 배출되는 오염성 미립자의 무게와 관리 역량을 입증합니다.
+                        </div>
+                      </div>
+                      <div className="q-item">
+                        <span className="q-num font-mono">Q 9.5</span>
+                        <div>
+                          <strong>전체 물 사용 효율성 (Water Intensity):</strong> 단순 사용 총량을 넘어 매출액당 물 사용량, 혹은 생산량 단위당 물 사용 효율을 강제함으로써 진정한 수자원 회복력을 벤치마킹합니다.
+                        </div>
+                      </div>
+                      <div className="q-item">
+                        <span className="q-num font-mono">Q 9.13</span>
+                        <div>
+                          <strong>유해물질 포함 제품:</strong> 자사 반도체 패키징이나 기판 제작 중 REACH 등 국제 유해 규제 물질 사용 비율을 추적하여 친환경 안전성을 모니터링합니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="pane-graphics">
+                  <div className="cdp-vs-table-box">
+                    <div className="graphic-title">공시 채널별 비교 테이블 <span className="source-label-inline">[출처: KoSIF 물공시 이슈브리프]</span></div>
+                    <table className="mini-table">
+                      <thead>
+                        <tr>
+                          <th>평가 기준</th>
+                          <th>국내 DART / 법적공시</th>
+                          <th>CDP 글로벌 스탠다드</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>지리적 경계</strong></td>
+                          <td className="text-red"><Lock className="mini-icon" /> 국내 법인/공장 한정</td>
+                          <td className="text-green font-semibold"><Globe className="mini-icon" /> 글로벌 연결 (Consolidated)</td>
+                        </tr>
+                        <tr>
+                          <td><strong>공시 세분성</strong></td>
+                          <td className="text-red">단순 취수/방류 총량만 기재</td>
+                          <td className="text-green font-semibold">폐수 정화 등급, 오염 물질량 개별 공시</td>
+                        </tr>
+                        <tr>
+                          <td><strong>검증 신뢰성</strong></td>
+                          <td className="text-muted">자가 검증 위주</td>
+                          <td className="text-green font-semibold"><FileCheck className="mini-icon" /> Q9.3.2 제3자 검증 의무화</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div className="graphic-note mt-2">
+                      CDP를 쓰면 국내 기업과 대만 TSMC를 <strong>같은 기준</strong>으로 비교할 수 있습니다. 집계 범위와 산정 방식이 문항으로 고정돼 있기 때문입니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* NEW INTERACTIVE SECTION: CDP Response Explorer */}
+              <div className="cdp-explorer-wrapper mt-4">
+                <div className="explorer-header">
+                  <BookOpen className="explorer-icon text-blue" />
+                  <h4>CDP 문항별 실제 제출 응답 비교 매트릭스</h4>
+                  <p className="explorer-subtitle">기업별 2025년 최신 CDP Water Security 공식 답변 서한 원문 대조</p>
+                </div>
+
+                <div className="cdp-question-selector">
+                  <label htmlFor="cdp-q-select">문항</label>
+                  <select
+                    id="cdp-q-select"
+                    value={activeCdpQuestion}
+                    onChange={(e) => setActiveCdpQuestion(e.target.value)}
+                  >
+                    {Object.entries(cdpMatrixData).map(([qId, q]) => (
+                      <option key={qId} value={qId}>
+                        {qId} · {(q as { title: string }).title}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="cdp-q-count">{Object.keys(cdpMatrixData).length}개 문항</span>
+                </div>
+
+                {selectedCdpQuestionData && (
+                  <div className="cdp-response-box fade-in">
+                    <div className="cdp-q-info-panel">
+                      <h5>{selectedCdpQuestionData.title}</h5>
+                      <p>{selectedCdpQuestionData.desc}</p>
+                    </div>
+
+                    <div className="cdp-matrix-table-wrapper mt-2">
+                      <table className="cdp-matrix-table">
+                        <thead>
+                          <tr>
+                            <th>비교 평가 항목 (Aspect)</th>
+                            <th className="th-samsung">삼성전자</th>
+                            <th className="th-hynix">SK하이닉스</th>
+                            <th className="th-tsmc">TSMC</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {selectedCdpQuestionData.rows.map((row: any, idx: number) => (
+                            <tr key={idx}>
+                              <td className="font-semibold aspect-cell">{row.aspect}</td>
+                              <td className="samsung-cell">{row.samsung}</td>
+                              <td className="hynix-cell">{row.hynix}</td>
+                              <td className="tsmc-cell">{row.tsmc}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
