@@ -30,6 +30,32 @@ type Payload = {
 
 const data = sitesData as unknown as Payload;
 
+/* 초순수(UPW) 공정을 실제로 쓰는 반도체·소재 제조사만 팝업에 수질 대조를 붙인다.
+ * 스펙 수치는 WaterDashboard.tsx "Section 2: 수질(초순수)의 벽"과 동일 출처를 그대로 재사용한다
+ * [출처: 반도체초순수협회 스펙 / 한국수자원공사(K-water) 가이드]. */
+const UPW_RELEVANT_ORGS = new Set([
+  'Samsung Electronics',
+  'SK Hynix',
+  'Samsung Display Co.,Ltd',
+  'Samsung Electro-Mechanics Co., Ltd.',
+  'SK Siltron Co., Ltd.',
+  'Simmtech Co., Ltd.',
+  'WONIK QNC CORP',
+]);
+
+const UPW_COMPARE_HTML = `
+  <div style="margin-top:10px;padding:8px 10px;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:8px">
+    <div style="font-size:11px;font-weight:700;color:#6d28d9;margin-bottom:6px">일반 지표수 → 반도체 초순수(UPW) 기준</div>
+    <table style="font-size:11px;border-collapse:collapse;width:100%;color:#334155">
+      <tr><td style="padding:1px 6px 1px 0;color:#64748b">탁도(Turbidity)</td><td>&lt; 5.0 NTU</td><td style="color:#94a3b8;padding:0 4px">&rarr;</td><td style="font-weight:700;color:#6d28d9">&lt; 0.001 NTU</td></tr>
+      <tr><td style="padding:1px 6px 1px 0;color:#64748b">유기탄소(TOC)</td><td>&lt; 10.0 ppm</td><td style="color:#94a3b8;padding:0 4px">&rarr;</td><td style="font-weight:700;color:#6d28d9">&lt; 0.5 ppb</td></tr>
+      <tr><td style="padding:1px 6px 1px 0;color:#64748b">잔류 이온</td><td>&lt; 150 ppm</td><td style="color:#94a3b8;padding:0 4px">&rarr;</td><td style="font-weight:700;color:#6d28d9">&lt; 0.01 ppb</td></tr>
+      <tr><td style="padding:1px 6px 1px 0;color:#64748b">미립자 크기</td><td>&lt; 50 ㎛</td><td style="color:#94a3b8;padding:0 4px">&rarr;</td><td style="font-weight:700;color:#6d28d9">&lt; 10 ㎚</td></tr>
+    </table>
+    <div style="margin-top:6px;font-size:10.5px;color:#7c3aed;line-height:1.4">취수량이 확보되어도 이 기준을 맞추려면 2차·3차 추가 정화 공정이 필요합니다 — 수량과 수질은 별개의 병목입니다.</div>
+    <div style="margin-top:4px;font-size:10px;color:#a78bfa">[출처: 반도체초순수협회 스펙 · K-water 초순수 백서 · SEMI 글로벌 반도체 표준]</div>
+  </div>`;
+
 /* 서남권 초기 뷰 (광주–여수 사이) */
 const SW_VIEW = { center: { lat: 34.98, lng: 126.95 }, zoom: 9 };
 const KR_VIEW = { center: { lat: 36.3, lng: 127.8 }, zoom: 7 };
@@ -147,6 +173,7 @@ export default function FacilityMap() {
                <tr><td style="color:#52514e;padding:2px 8px 2px 0">소비량</td><td>${fmt(s.co)}</td></tr>
              </table>
              ${flagHtml}
+             ${UPW_RELEVANT_ORGS.has(s.o) ? UPW_COMPARE_HTML : ''}
              <div style="margin-top:8px;font-size:11px;color:#898781">CDP 2025 Module 9 · Q9.3.1 사업장별 물 데이터</div>
            </div>`
         );

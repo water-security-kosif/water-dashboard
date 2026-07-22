@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import KpiHeader from './KpiHeader';
 import FacilityMap from './FacilityMap';
+import TsmcWaterIntensitySimulator from './TsmcWaterIntensitySimulator';
 import { 
   Droplet, 
   ArrowDownRight, 
@@ -1087,6 +1088,12 @@ export default function WaterDashboard() {
             </div>
           )}
         </div>
+
+        {/* TSMC 공식 원단위 프록시 계산기 (Section 1과 별도 — 실제 공시치 기반) */}
+        <TsmcWaterIntensitySimulator
+          isActive={activeSection === 'tsmcProxy'}
+          onToggle={() => toggleSection('tsmcProxy')}
+        />
 
         {/* 5. 기업별 용수 데이터 아카이브 (최하단 배치, 가장 낮은 중요도) */}
         <div className={`accordion-item ${activeSection === 'archive' ? 'is-active' : ''}`} style={{ marginTop: '24px' }}>
