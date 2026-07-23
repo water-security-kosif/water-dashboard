@@ -197,7 +197,7 @@ export default function WaterDashboard() {
             aspect: '실제 공시/추정 원단위 수치 (Intensity Value)',
             samsung: '47.2 L/wafer area (2024년 연구기관 추정치)',
             hynix: '56.1 L/wafer area (2024년 연구기관 추정치)',
-            tsmc: '64.5 L/wafer area (2024년 공식 공시 실적치)'
+            tsmc: '161.0 L/12-inch equivalent wafer mask layer (2024년 공식 감사 공시치)'
           },
           {
             aspect: '중장기 감축 목표 (Long-term Target)',
@@ -436,12 +436,12 @@ export default function WaterDashboard() {
       return (annualWafers * intensity) / 1000;
     };
 
-    const tscVal = calculateML(64.5);
+    const tscVal = calculateML(161.0);
     const samVal = calculateML(47.2);
     const skhVal = calculateML(56.1);
 
     return [
-      { name: 'TSMC 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(tscVal), '원단위 (L)': 64.5 },
+      { name: 'TSMC 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(tscVal), '원단위 (L)': 161.0 },
       { name: 'SK하이닉스 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(skhVal), '원단위 (L)': 56.1 },
       { name: '삼성전자 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(samVal), '원단위 (L)': 47.2 }
     ];
@@ -518,7 +518,7 @@ export default function WaterDashboard() {
                   <div className="simulator-theory">
                     <h4>시뮬레이터 연산 로직 배경 <span className="source-label-inline">[출처: TSMC 공시 및 KoSIF 보고서 기반]</span></h4>
                     <p>
-                      3사 중 <strong>웨이퍼 장당 용수 원단위(L/wafer area)</strong>를 보고서에 감사된 공식 수치로 투명 공시하는 곳은 <strong>대만 TSMC(64.5 L)가 유일</strong>합니다.
+                      3사 중 <strong>웨이퍼 마스크 레이어당 용수 원단위(161.0 L/12-inch equivalent wafer mask layer)</strong>를 보고서에 감사된 공식 수치로 투명 공시하는 곳은 <strong>대만 TSMC(161.0 L)가 유일</strong>합니다.
                     </p>
                     <p className="mt-2">
                       삼성전자(47.2 L)와 SK하이닉스(56.1 L)의 수치는 공식 공시된 지표가 아니며, <strong>연구기관(KoSIF 등)이 공장 전체 용수량 대비 추정 생산 능력을 기반으로 역산한 추정치</strong>입니다.
@@ -580,7 +580,7 @@ export default function WaterDashboard() {
                     <div className="res-card border-blue">
                       <span className="res-label">TSMC 프록시 기준</span>
                       <span className="res-val text-blue font-mono">{formatNum(simulatorEstimates[0]['예상 용수량 (ML/년)'])} <span className="unit">ML/년</span></span>
-                      <span className="res-note">원단위: 64.5 L [출처: TSMC SR]</span>
+                      <span className="res-note">원단위: 161.0 L/12-inch equivalent wafer mask layer [출처: TSMC 2024 Annual/Sustainability Report]</span>
                     </div>
                     <div className="res-card border-green">
                       <span className="res-label">SK하이닉스 기준</span>
