@@ -432,18 +432,19 @@ export default function WaterDashboard() {
   // Section 2: Simulator logic
   const simulatorEstimates = useMemo(() => {
     const annualWafers = monthlyProduction * 1000 * 12; // total wafers/year
-    const calculateML = (intensity: number) => {
-      return (annualWafers * intensity) / 1000;
+    const calculateDailyManTon = (intensity: number) => {
+      const annualLiters = annualWafers * intensity;
+      return annualLiters / 3_650_000_000;
     };
 
-    const tscVal = calculateML(161.0);
-    const samVal = calculateML(47.2);
-    const skhVal = calculateML(56.1);
+    const tscVal = calculateDailyManTon(161.0);
+    const skhVal = calculateDailyManTon(56.1);
+    const samVal = calculateDailyManTon(47.2);
 
     return [
-      { name: 'TSMC 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(tscVal), '원단위 (L)': 161.0 },
-      { name: 'SK하이닉스 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(skhVal), '원단위 (L)': 56.1 },
-      { name: '삼성전자 기준 (Proxy)', '예상 용수량 (ML/년)': Math.round(samVal), '원단위 (L)': 47.2 }
+      { name: 'TSMC 기준 (Proxy)', '일일 필요 용수량 (만톤/일)': Number(tscVal.toFixed(2)), '원단위 (L)': 161.0 },
+      { name: 'SK하이닉스 기준 (Proxy)', '일일 필요 용수량 (만톤/일)': Number(skhVal.toFixed(2)), '원단위 (L)': 56.1 },
+      { name: '삼성전자 기준 (Proxy)', '일일 필요 용수량 (만톤/일)': Number(samVal.toFixed(2)), '원단위 (L)': 47.2 }
     ];
   }, [monthlyProduction]);
 
@@ -532,23 +533,19 @@ export default function WaterDashboard() {
                       <h5>📊 연산 공식 및 방법론 (Methodology)</h5>
                       <div className="methodology-formula">
                         <div style={{ fontFamily: 'var(--mono)', fontSize: '12px', lineHeight: '1.6', textAlign: 'left', whiteSpace: 'pre-wrap', color: 'var(--text-title)' }}>
-                          {"[연산 공식]\n예상 용수량(ML/년) = (월 생산량 × 1,000 × 12개월 × 원단위(L) × 1,000) / 1,000,000\n                  = 월간 생산량(K장) × 12 × 원단위(L)"}
+                          {"[연산 공식]\n일일 필요 용수량(만톤/일) = (월 생산량(K장) × 1,000 × 12개월 × 원단위(L)) ÷ 3,650,000,000"}
                         </div>
-                        <p className="formula-simplified mt-2">
-                          즉, 간단히: <strong>월간 생산량(K장) × 12 × 원단위 (L)</strong>
-                        </p>
                       </div>
                       <ul className="methodology-notes-list mt-2">
                         <li><strong>월간 생산량:</strong> 12인치(300mm) 규격 웨이퍼 기준 투입량 (천 장 단위).</li>
-                        <li><strong>보정 계수(1,000):</strong> 가상의 원단위 공정 용수 외에 냉각수 증발량, 스크러버 환경 세척수, 유틸리티 유지에 소요되는 부대 용수 가중치 1,000을 곱해 물리적인 실제 공장 가동 실소비량 스케일과 매칭시킵니다.</li>
-                        <li><strong>수출 단위 변환:</strong> 리터(L) 단위를 메가리터(ML, 100만 리터) 단위로 환산 처리합니다.</li>
+                        <li><strong>일일 환산 단위:</strong> 연간 총 예상 필요 물량을 365일로 나눈 일평균 `만톤/일` 표기 방식입니다.</li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
                 <div className="simulator-results">
-                  <h3>원단위 기준별 연간 필요 용수량 비교</h3>
+                  <h3>원단위 기준별 일일 필요 용수량 비교</h3>
                   
                   <div className="sim-charts-wrapper" style={{ width: '100%', height: 260 }}>
                     <ResponsiveContainer width="100%" height="100%">
@@ -558,13 +555,13 @@ export default function WaterDashboard() {
                         margin={{ top: 20, right: 30, left: 40, bottom: 5 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke="#2e303a" />
-                        <XAxis type="number" stroke="#9ca3af" unit=" ML" />
+                        <XAxis type="number" stroke="#9ca3af" unit=" 만톤/일" />
                         <YAxis type="category" dataKey="name" stroke="#9ca3af" width={140} />
                         <ChartTooltip 
                           contentStyle={{ backgroundColor: '#1e2029', border: '1px solid #2e303a', color: '#f3f4f6' }}
-                          formatter={(value: any) => [`${value.toLocaleString()} ML/년`]}
+                          formatter={(value: any) => [`${value.toLocaleString()} 만톤/일`]}
                         />
-                        <Bar dataKey="예상 용수량 (ML/년)" fill="#2563eb" radius={[0, 4, 4, 0]}>
+                        <Bar dataKey="일일 필요 용수량 (만톤/일)" fill="#2563eb" radius={[0, 4, 4, 0]}>
                           {simulatorEstimates.map((_, index) => (
                             <rect 
                               key={index} 
@@ -579,17 +576,17 @@ export default function WaterDashboard() {
                   <div className="results-summary-cards mt-4">
                     <div className="res-card border-blue">
                       <span className="res-label">TSMC 프록시 기준</span>
-                      <span className="res-val text-blue font-mono">{formatNum(simulatorEstimates[0]['예상 용수량 (ML/년)'])} <span className="unit">ML/년</span></span>
+                      <span className="res-val text-blue font-mono">{simulatorEstimates[0]['일일 필요 용수량 (만톤/일)']} <span className="unit">만톤/일</span></span>
                       <span className="res-note">원단위: 161.0 L/12-inch equivalent wafer mask layer [출처: TSMC 2024 Annual/Sustainability Report]</span>
                     </div>
                     <div className="res-card border-green">
                       <span className="res-label">SK하이닉스 기준</span>
-                      <span className="res-val text-green font-mono">{formatNum(simulatorEstimates[1]['예상 용수량 (ML/년)'])} <span className="unit">ML/년</span></span>
+                      <span className="res-val text-green font-mono">{simulatorEstimates[1]['일일 필요 용수량 (만톤/일)']} <span className="unit">만톤/일</span></span>
                       <span className="res-note">원단위: 56.1 L [출처: SK하이닉스 SR]</span>
                     </div>
                     <div className="res-card border-purple">
                       <span className="res-label">삼성전자 기준</span>
-                      <span className="res-val text-purple font-mono">{formatNum(simulatorEstimates[2]['예상 용수량 (ML/년)'])} <span className="unit">ML/년</span></span>
+                      <span className="res-val text-purple font-mono">{simulatorEstimates[2]['일일 필요 용수량 (만톤/일)']} <span className="unit">만톤/일</span></span>
                       <span className="res-note">원단위: 47.2 L [출처: 삼성전자 SR]</span>
                     </div>
                   </div>

@@ -94,18 +94,18 @@ export default function TsmcWaterIntensitySimulator({ isActive, onToggle }: Prop
             </div>
 
             <div className="simulator-results">
-              <h3>TSMC 원단위 기준 예상 취수량</h3>
+              <h3>TSMC 원단위 기준 일일 필요 용수량</h3>
 
               <div className="results-summary-cards" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
                 <div className="res-card border-purple">
-                  <span className="res-label">연간 총 예상 취수량</span>
-                  <span className="res-val text-purple font-mono">{fmt(result.annualML)} <span className="unit">ML/년</span></span>
+                  <span className="res-label">TSMC 프록시 취수량</span>
+                  <span className="res-val text-purple font-mono">{result.dailyManTon.toFixed(2)} <span className="unit">만톤/일</span></span>
                   <span className="res-note">원단위: {TSMC_L_PER_LAYER.toFixed(1)} L/레이어 × {ASSUMED_LAYERS}층 [출처: TSMC {TSMC_YEAR} SR p.129]</span>
                 </div>
                 <div className="res-card border-blue">
                   <span className="res-label">일평균 환산 취수량</span>
-                  <span className="res-val text-blue font-mono">{result.dailyManTon.toFixed(2)} <span className="unit">만 톤/일</span></span>
-                  <span className="res-note">연간값 ÷ 365일 단순 평균 (계절 변동 미반영)</span>
+                  <span className="res-val text-blue font-mono">{result.dailyManTon.toFixed(2)} <span className="unit">만톤/일</span></span>
+                  <span className="res-note">연간 총 취수량 ÷ 365일 환산 수치</span>
                 </div>
               </div>
             </div>
